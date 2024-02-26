@@ -446,7 +446,6 @@ GameObject:
   - component: {fileID: 516848978813713826}
   - component: {fileID: 2233505235200231218}
   - component: {fileID: 7089852941332417964}
-  - component: {fileID: 6624800912109368655}
   m_Layer: 5
   m_Name: RoleUI
   m_TagString: Untagged
@@ -570,30 +569,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &6624800912109368655
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2129488315967806837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08182767250a13242a47ed58a1c91833, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roleText: {fileID: 0}
-  timerText: {fileID: 0}
-  gameOverText: {fileID: 0}
-  heart1: {fileID: 0}
-  heart2: {fileID: 0}
-  heart3: {fileID: 0}
-  turboImage: {fileID: 0}
-  attractImage: {fileID: 0}
-  repulseImage: {fileID: 0}
-  emptyImage: {fileID: 0}
-  tpText: {fileID: 0}
-  tpImage: {fileID: 0}
 --- !u!1 &2282413149264395994
 GameObject:
   m_ObjectHideFlags: 0

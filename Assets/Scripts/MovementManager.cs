@@ -33,7 +33,6 @@ public class MovementManager : MonoBehaviour
     {
         if (view.IsMine) {
             XRrig.position = child.transform.position;
-
             if (inputData.rightController.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 movement))
             {
                 xInput = movement.x;
