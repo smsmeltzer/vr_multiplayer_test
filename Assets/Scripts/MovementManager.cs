@@ -39,7 +39,7 @@ public class MovementManager : MonoBehaviour
         }
 
         if(Input.GetKeyDown(KeyCode.Space)) {
-            myView.RPC("changeMaterial", RpcTarget.Others);
+            myView.RPC("changeMaterial", RpcTarget.All);
         }
     }
 

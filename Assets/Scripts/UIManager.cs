@@ -32,12 +32,16 @@ public class DisplayRoleScript : MonoBehaviour
     // 3 = attack/repulse
     private int powerup;
 
-    private float targetTime = 20;
+
+    const int MAX_TAGGER_TIME = 120;    // max time given to tagger 
+
+    private float targetTime;
     private bool is_tagger;
 
     [SerializeField] private TextMeshProUGUI tpText;
     public Image tpImage;
     private int num_tps;
+
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +49,7 @@ public class DisplayRoleScript : MonoBehaviour
         roleText.text = "Tagger";
         is_tagger = true;
         timerText.text = "";
+        targetTime = MAX_TAGGER_TIME; 
 
         num_lives = 3;
         heart1.enabled = true;
@@ -69,47 +74,58 @@ public class DisplayRoleScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (is_tagger)  
+        if (is_tagger)  // must count down tagger's remaining time
         {
             targetTime -= Time.deltaTime;
             float minutes = Mathf.FloorToInt(targetTime / 60);
             float seconds = Mathf.FloorToInt(targetTime % 60);
-            timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+            timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);  // display time in min:sec format
 
-            if (targetTime <= 0.0f)
+            if (targetTime <= 0.0f) // when out of time, lose life and reset targetTime
             {
                 lose_life();
-                targetTime = 20;
+                targetTime = MAX_TAGGER_TIME;
             }
         }
     }
 
-    public void change_role(string role)
+    // Sets role to given role as a String, will display as inputted
+    public void set_role(string role)
     {
         roleText.text = role;
         if (role == "Tagger")
         {
             is_tagger = true;
-            targetTime = 20;
-        }
-    }
-
-    public void lose_life()
-    {
-        num_lives--;
-        if (num_lives == 0)
-        {
-            heart3.enabled = false;
-            gameOverText.enabled = true;
-        }
-        else if (num_lives == 1)
-        {
-            heart2.enabled = false;
+            targetTime = MAX_TAGGER_TIME;
         }
         else
         {
-            heart1.enabled = false; 
+            is_tagger = false;
         }
+    }
+
+    // Subtracts a life from player
+    // Returns if player is alive after subtracting life
+    public bool lose_life()
+    {
+        if (is_alive())
+        {
+            num_lives--;
+            if (num_lives == 0)
+            {
+                heart3.enabled = false;
+                gameOverText.enabled = true;
+            }
+            else if (num_lives == 1)
+            {
+                heart2.enabled = false;
+            }
+            else
+            {
+                heart1.enabled = false;
+            }
+        }
+        return is_alive();
     }
 
     public bool is_alive()
@@ -129,10 +145,14 @@ public class DisplayRoleScript : MonoBehaviour
         tpText.text = num_tps.ToString();
     }
 
+    // Adds powerup based on int 
+    // 1 = add tp
+    // 2 = add turbo speed
+    // 3 = add attract/repulse  
     public void add_powerup(int p)
     {
-        // player has a powerup stored, can't pick up another
-        if (powerup != -1)
+        // player has a powerup stored, can't pick up another unless its a tp
+        if (powerup != -1 && p != 1)
         {
             return;
         }
@@ -153,7 +173,7 @@ public class DisplayRoleScript : MonoBehaviour
         {
             emptyImage.enabled = false;
 
-            if (is_tagger)
+            if (is_tagger)  // display attract or repulse image based on player's Role
             {
                 attractImage.enabled = true;
             }
@@ -163,6 +183,8 @@ public class DisplayRoleScript : MonoBehaviour
         }
     }
 
+    // Removes displayed powerup
+    // different than use_tp()
     public void use_powerup()
     {
         if (powerup != -1)
