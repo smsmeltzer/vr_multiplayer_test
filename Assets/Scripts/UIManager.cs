@@ -8,9 +8,7 @@ using UnityEngine.UI;
 public class DisplayRoleScript : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI roleText;
-
     [SerializeField] private TextMeshProUGUI timerText;
-
     [SerializeField] private TextMeshProUGUI gameOverText;
 
     public Image heart1;
@@ -41,7 +39,6 @@ public class DisplayRoleScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI tpText;
     public Image tpImage;
     private int num_tps;
-
 
     // Start is called before the first frame update
     void Start()
@@ -113,8 +110,19 @@ public class DisplayRoleScript : MonoBehaviour
             num_lives--;
             if (num_lives == 0)
             {
-                heart3.enabled = false;
+                // Player has died: disable all UI
+                heart3.enabled = false; 
                 gameOverText.enabled = true;
+                timerText.enabled = false;
+                roleText.enabled = false;
+                tpText.enabled = false;
+                tpImage.enabled = false;
+                repulseImage.enabled = false;
+                turboImage.enabled = false;
+                attractImage.enabled = false;
+                emptyImage.enabled = false;
+
+                // TODO: do something to Player OBJ to disable
             }
             else if (num_lives == 1)
             {

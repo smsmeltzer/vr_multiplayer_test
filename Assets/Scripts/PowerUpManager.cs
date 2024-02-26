@@ -42,7 +42,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Collided with " + collision.gameObject.name);
+        //Debug.Log("Collided with " + collision.gameObject.name);
 
         myCollider.enabled = false;
         myRenderer.enabled= false;
