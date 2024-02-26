@@ -1,64 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
-using Photon.Pun;
 using UnityEngine;
+using UnityEngine.XR;
+using Photon.Pun;
 
 public class MovementManager : MonoBehaviour
 {
-    private PhotonView myView;
-
-    private GameObject myBody;
-    private Rigidbody myRB;
-
-
+    private PhotonView view;
+    private GameObject child;
     private float xInput;
-    private float zInput;
+    private float yInput;
     private float movementSpeed = 10.0f;
 
-    private MeshRenderer myMesh;
-    private int index = 0;
-    [SerializeField] List<Material> myMaterials;
-
+    private InputData inputData;
+    private Rigidbody rb;
+    private Transform XRrig;
     // Start is called before the first frame update
     void Start()
     {
-        myView = GetComponent<PhotonView>();
-        myBody = transform.GetChild(0).gameObject;
-        myRB = myBody.GetComponent<Rigidbody>();   
-        myMesh = myBody.GetComponent<MeshRenderer>();
+        view = GetComponent<PhotonView>();
+
+        child = transform.GetChild(0).gameObject;
+        rb = child.GetComponent<Rigidbody>();
+        GameObject XrOrigin = GameObject.Find("XR Origin");
+
+        XRrig = XrOrigin.transform;
+        inputData = XrOrigin.GetComponent<InputData>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(myView.IsMine)
-        {
-            xInput = Input.GetAxis("Horizontal");
-            zInput = Input.GetAxis("Vertical");
-          
-        }
+        if (view.IsMine) {
+            XRrig.position = child.transform.position;
 
-        if(Input.GetKeyDown(KeyCode.Space)) {
-            myView.RPC("changeMaterial", RpcTarget.Others);
+            if (inputData.rightController.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 movement))
+            {
+                xInput = movement.x;
+                yInput = movement.y;
+            }
         }
     }
 
     private void FixedUpdate()
     {
-        myRB.AddForce(xInput * movementSpeed, 0, zInput * movementSpeed);
-    }
-
-    [PunRPC]
-    void changeMaterial()
-    {
-        if (myView.IsMine)
-        {
-            if (index == myMaterials.Count)
-            {
-                index = 0;
-            }
-            myMesh.material = myMaterials[index];
-            index++;
-        }
+        rb.AddForce(xInput * movementSpeed, 0, yInput * movementSpeed);
     }
 }
