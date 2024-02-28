@@ -11,17 +11,16 @@ public class DisplayRoleScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private TextMeshProUGUI gameOverText;
 
-    public Image heart1;
-    public Image heart2;
-    public Image heart3;
+    [SerializeField] private Image heart1;
+    [SerializeField] private Image heart2;
+    [SerializeField] private Image heart3;
     private int num_lives;
 
-    public Image turboImage;
-    public Image attractImage;
-    public Image repulseImage;
-    public Image emptyImage;
+    [SerializeField] private Image turboImage;
+    [SerializeField] private Image attractImage;
+    [SerializeField] private Image repulseImage;
+    [SerializeField] private Image tpImage;
 
-    [SerializeField] public List<IconAttribute> myIcons;
 
     // Stores type of powerup player has:
     // -1 = no powerup stored
@@ -37,16 +36,12 @@ public class DisplayRoleScript : MonoBehaviour
     private bool is_tagger;
 
     [SerializeField] private TextMeshProUGUI tpText;
-    public Image tpImage;
     private int num_tps;
 
     // Start is called before the first frame update
     void Start()
     {
-        roleText.text = "Tagger";
-        is_tagger = true;
-        timerText.text = "";
-        targetTime = MAX_TAGGER_TIME; 
+        set_role("runner");
 
         num_lives = 3;
         heart1.enabled = true;
@@ -55,13 +50,11 @@ public class DisplayRoleScript : MonoBehaviour
 
         num_tps = 0;
         tpText.text = num_tps.ToString();
-        tpImage.enabled = true;
 
         powerup = -1;
-        emptyImage.enabled = true;
-        repulseImage.enabled = false;
         turboImage.enabled = false;
         attractImage.enabled = false;
+        repulseImage.enabled = false;
 
         gameOverText.enabled = false;
 
@@ -90,7 +83,7 @@ public class DisplayRoleScript : MonoBehaviour
     public void set_role(string role)
     {
         roleText.text = role;
-        if (role == "Tagger")
+        if (role.ToLower() == "tagger")
         {
             is_tagger = true;
             targetTime = MAX_TAGGER_TIME;
@@ -116,13 +109,11 @@ public class DisplayRoleScript : MonoBehaviour
                 timerText.enabled = false;
                 roleText.enabled = false;
                 tpText.enabled = false;
-                tpImage.enabled = false;
-                repulseImage.enabled = false;
                 turboImage.enabled = false;
                 attractImage.enabled = false;
-                emptyImage.enabled = false;
+                repulseImage.enabled = false;
+                tpImage.enabled = false;
 
-                // TODO: do something to Player OBJ to disable
             }
             else if (num_lives == 1)
             {
@@ -174,19 +165,17 @@ public class DisplayRoleScript : MonoBehaviour
         }
         else if (powerup == 2)
         {
-            emptyImage.enabled = false;
             turboImage.enabled = true;
         }
         else if (powerup == 3)
         {
-            emptyImage.enabled = false;
 
             if (is_tagger)  // display attract or repulse image based on player's Role
             {
-                attractImage.enabled = true;
+                attractImage.enabled = true;    
             }
             else { 
-                repulseImage.enabled = true;
+                repulseImage.enabled = true;    
             }
         }
     }
@@ -198,10 +187,9 @@ public class DisplayRoleScript : MonoBehaviour
         if (powerup != -1)
         {
             powerup = -1;
-            emptyImage.enabled = true;
-            repulseImage.enabled = false;
             turboImage.enabled = false;
             attractImage.enabled = false;
+            repulseImage.enabled = false;
         }
     }
 }
