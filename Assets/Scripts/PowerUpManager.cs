@@ -18,11 +18,15 @@ public class NewBehaviourScript : MonoBehaviour
 
     public List<GameObject> icons;
 
+    // Change these values to change random interval the powerup will spawn
+    private const int MAX_TIMER = 20;
+    private const int MIN_TIMER = 5;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        spawn_time = Random.Range(1, 15);
+        spawn_time = Random.Range(MIN_TIMER, MAX_TIMER);
         myCollider = this.GetComponent<Collider>();
         myCollider.enabled = false; 
         myRenderer = this.GetComponent<Renderer>();
@@ -52,7 +56,7 @@ public class NewBehaviourScript : MonoBehaviour
             }
         }
 
-        if(myRenderer.enabled)
+        if(myRenderer.enabled)  // if enabled, rotate icon 
         {
             icons[powerup - 1].transform.Rotate(Vector3.up * 80 * Time.deltaTime, Space.Self);
         }
@@ -67,10 +71,17 @@ public class NewBehaviourScript : MonoBehaviour
             myRenderer.enabled = false;
             icons[powerup - 1].GetComponent<Renderer>().enabled = false;
 
-            spawn_time = Random.Range(15, 30);    // reset timer
+            spawn_time = Random.Range(MIN_TIMER, MAX_TIMER);    // reset timer
 
             // Access UI of gameobj and use add_powerup() to update UI
-            collision.gameObject.transform.GetChild(0).gameObject.GetComponent<DisplayRoleScript>().add_powerup(powerup);
+            if (powerup == 1)   // store tp in UI, get UI obj attached to specific game obj
+            {
+                collision.gameObject.transform.GetChild(0).gameObject.GetComponent<DisplayRoleScript>().add_tp();
+            }
+            else // Turbo, Attract/Repulse are instant use
+            {
+                collision.gameObject.GetComponent<PlayerMove>().add_powerup(powerup);   // getComponenet<name of movement script>
+            }
         }
     }
 
