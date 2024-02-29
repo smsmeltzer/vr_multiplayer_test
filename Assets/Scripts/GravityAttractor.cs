@@ -14,15 +14,4 @@ public class GravityAttractor : MonoBehaviour
         body.rotation = Quaternion.FromToRotation(body.up, direction) * body.rotation;
         body.GetComponent<Rigidbody>().AddForce(direction * gravity);
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
