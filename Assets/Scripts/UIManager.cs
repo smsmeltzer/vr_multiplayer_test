@@ -29,7 +29,7 @@ public class DisplayRoleScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        set_role("runner");
+        set_role("tagger");
 
         num_lives = 3;
         heart1.enabled = true;
@@ -75,6 +75,28 @@ public class DisplayRoleScript : MonoBehaviour
         {
             is_tagger = false;
         }
+    }
+
+    public void change_role()
+    {
+        if (roleText.text == "tagger")
+        {
+            is_tagger = false;
+            roleText.text = "runner";
+            timerText.text = "";
+        }
+        else
+        {
+            roleText.text = "tagger";
+            is_tagger = true;
+            targetTime = MAX_TAGGER_TIME;
+
+        }
+    }
+
+    public bool get_is_tagger()
+    {
+        return is_tagger;
     }
 
     // Subtracts a life from player

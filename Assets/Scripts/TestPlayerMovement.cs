@@ -13,6 +13,7 @@ public class PlayerMove : MonoBehaviour
     private const int POWER_UP_TIME = 5;    // 5 seconds
 
     private DisplayRoleScript myUIScript;
+    private AttractForceScript myForceScript;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,8 @@ public class PlayerMove : MonoBehaviour
         active_powerup = -1;
 
         myUIScript = this.transform.GetChild(0).GetComponent<DisplayRoleScript>();
+        myForceScript = this.GetComponent<AttractForceScript>();
+        myForceScript.enabled = false;
     }
 
     // Update is called once per frame
@@ -35,9 +38,6 @@ public class PlayerMove : MonoBehaviour
 
         float moveSpeed = 5;
         
-        
-
-
         if(timer_activated)
         {
             timer_time -= Time.deltaTime;
@@ -45,6 +45,7 @@ public class PlayerMove : MonoBehaviour
             {
                 timer_time = POWER_UP_TIME;
                 timer_activated = false;
+                myForceScript.enabled = false;
             }
 
 
@@ -54,7 +55,8 @@ public class PlayerMove : MonoBehaviour
             }
             else if (active_powerup == 3)
             {
-
+                myForceScript.change_force_direction(myUIScript.get_is_tagger());
+                myForceScript.enabled = true;
             }
         }
 
@@ -102,9 +104,12 @@ public class PlayerMove : MonoBehaviour
 
     private void OnCollisionEnter(Collision c)
     {
-        if(c.gameObject.tag == "loseLife")
+        if(c.gameObject.tag == "testObj")
         {
             myUIScript.lose_life();
+            //myUIScript.change_role();
+            //myForceScript.change_force_direction(myUIScript.get_is_tagger());
+
         }
     }
 

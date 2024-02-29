@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Planet
   - loseLife
+  - testObj
   layers:
   - Default
   - TransparentFX
