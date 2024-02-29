@@ -12,6 +12,8 @@ public class PlayerMove : MonoBehaviour
     private int active_powerup;
     private const int POWER_UP_TIME = 5;    // 5 seconds
 
+    private DisplayRoleScript myUIScript;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +22,8 @@ public class PlayerMove : MonoBehaviour
         timer_time = POWER_UP_TIME;
         timer_activated = false;
         active_powerup = -1;
+
+        myUIScript = this.transform.GetChild(0).GetComponent<DisplayRoleScript>();
     }
 
     // Update is called once per frame
@@ -96,8 +100,12 @@ public class PlayerMove : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnCollisionEnter(Collision c)
     {
+        if(c.gameObject.tag == "loseLife")
+        {
+            myUIScript.lose_life();
+        }
     }
 
     public void add_powerup(int powerup)

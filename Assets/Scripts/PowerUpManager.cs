@@ -64,7 +64,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name == "player")
+        if (collision.gameObject.tag == "Player")   // set tag of player obj to "Player"
         {
 
             myCollider.enabled = false;
