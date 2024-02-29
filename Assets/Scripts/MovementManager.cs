@@ -15,6 +15,9 @@ public class MovementManager : MonoBehaviour
     private InputData inputData;
     private Rigidbody rb;
     private Transform XRrig;
+
+    Vector3 moveAmount;
+    Vector3 smoothMoveVelocity;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,16 +36,21 @@ public class MovementManager : MonoBehaviour
     {
         if (view.IsMine) {
             XRrig.position = child.transform.position;
+
             if (inputData.rightController.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 movement))
             {
-                xInput = movement.x;
-                yInput = movement.y;
+                //xInput = movement.x;
+                //yInput = movement.y;
+                Vector3 moveDir = new Vector3(movement.x, 0, movement.y).normalized;
+                Vector3 targetMoveAmount = moveDir * movementSpeed;
+                moveAmount = Vector3.SmoothDamp(moveAmount, targetMoveAmount, ref smoothMoveVelocity, .15f);
             }
         }
     }
 
     private void FixedUpdate()
     {
-        rb.AddForce(xInput * movementSpeed, 0, yInput * movementSpeed);
+        //rb.AddForce(xInput * movementSpeed, 0, yInput * movementSpeed);
+        rb.MovePosition(rb.position + transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);
     }
 }
