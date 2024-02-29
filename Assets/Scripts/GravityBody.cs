@@ -1,23 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-[ RequireComponent(typeof (Rigidbody))]
-public class GravityBody : MonoBehaviour
+
+public class GravityBody : MonoBehaviourPunCallbacks
 {
-    GravityAttractor planet;
+    private GravityAttractor planet;
+    private GameObject child;
+    private Rigidbody rb;
+    private PhotonView view;
 
     // Start is called before the first frame update
     void Start()
     {
+        view = GetComponent<PhotonView>();
         planet = GameObject.FindGameObjectWithTag("Planet").GetComponent<GravityAttractor>();
-        GetComponent<Rigidbody>().useGravity = false;
-        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+
+        child = transform.GetChild(0).gameObject;
+        rb = child.GetComponent<Rigidbody>();
+        rb.useGravity = false;
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
     }
 
     // Update is called once per frame
     void Update()
     {
-        planet.Attract(GetComponent<Transform>());
+        if (view.IsMine)
+        {
+            planet.Attract(child.GetComponent<Transform>());
+        }
     }
 }

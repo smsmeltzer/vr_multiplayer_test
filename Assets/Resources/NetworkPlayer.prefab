@@ -31,8 +31,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6184438223107262263}
   - {fileID: 9208463051364028043}
+  - {fileID: 6184438223107262263}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1992764443158981084
@@ -84,6 +84,7 @@ GameObject:
   - component: {fileID: 8679862734900358342}
   - component: {fileID: 5912039804459450119}
   - component: {fileID: 1984903835982814804}
+  - component: {fileID: 6206389287158991408}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -222,6 +223,18 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &6206389287158991408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8333527247751548980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e768df25ea0b48844a4019bddeebcca1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5128133121012214093
 PrefabInstance:
   m_ObjectHideFlags: 0

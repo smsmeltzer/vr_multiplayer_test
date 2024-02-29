@@ -3,8 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using System.Runtime.CompilerServices;
 
+public class PlayerInfo
+{
+    public int actor;
+    public short lives;
+    public bool team;
 
+    public PlayerInfo(int actor, short lives, bool team)
+    {
+        this.actor = actor;
+        this.lives = lives;
+        this.team = team;
+    }
+}
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
     // Start is called before the first frame update
