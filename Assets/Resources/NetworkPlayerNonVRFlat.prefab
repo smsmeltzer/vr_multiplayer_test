@@ -56,6 +56,8 @@ MonoBehaviour:
   gravity: 10
   jumpSpeed: 10
   tol: 0.01
+  myUIScript: {fileID: 0}
+  myForceScript: {fileID: 0}
 --- !u!114 &8048447846817840094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,7 +272,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88f2001327c2c2d438fc9de4016ef683, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isIt: 0
 --- !u!1 &8563337194591313356
 GameObject:
   m_ObjectHideFlags: 0
