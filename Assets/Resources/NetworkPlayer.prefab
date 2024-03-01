@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4015268091210876503}
   - component: {fileID: 1992764443158981084}
   - component: {fileID: 8048447846817840094}
+  - component: {fileID: 1966444338502251983}
+  - component: {fileID: 1027246920426559148}
   m_Layer: 0
   m_Name: NetworkPlayer
   m_TagString: Untagged
@@ -47,6 +49,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68b127eda49f48b40853497032a43a92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 10
+  jumpSpeed: 10
+  groundedMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &8048447846817840094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,6 +77,30 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &1966444338502251983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5464222448787670157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e768df25ea0b48844a4019bddeebcca1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1027246920426559148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5464222448787670157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da6286050c252a4cbb3636dae2407ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8333527247751548980
 GameObject:
   m_ObjectHideFlags: 0
