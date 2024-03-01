@@ -76,7 +76,7 @@ public class NewBehaviourScript : MonoBehaviour
             // Access UI of gameobj and use add_powerup() to update UI
             if (powerup == 1)   // store tp in UI, get UI obj attached to specific game obj
             {
-                collision.gameObject.transform.GetChild(0).gameObject.GetComponent<DisplayRoleScript>().add_tp();
+                collision.gameObject.transform.Find("UI").gameObject.GetComponent<DisplayRoleScript>().add_tp();
             }
             else // Turbo, Attract/Repulse are instant use
             {
