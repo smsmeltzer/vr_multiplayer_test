@@ -13,7 +13,10 @@ public class PlayerRoleManager : MonoBehaviourPunCallbacks
         {
             team = true;
         }
+    }
 
-        Debug.Log(team);
+    public void ChangeTeam()
+    {
+        team = !team;
     }
 }
