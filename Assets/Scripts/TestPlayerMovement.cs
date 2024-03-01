@@ -12,8 +12,8 @@ public class PlayerMove : MonoBehaviour
     private int active_powerup;
     private const int POWER_UP_TIME = 5;    // 5 seconds
 
-    private DisplayRoleScript myUIScript;
-    private AttractForceScript myForceScript;
+    [SerializeField] private DisplayRoleScript myUIScript;
+    [SerializeField] private AttractForceScript myForceScript;
 
     // Start is called before the first frame update
     void Start()
@@ -24,8 +24,6 @@ public class PlayerMove : MonoBehaviour
         timer_activated = false;
         active_powerup = -1;
 
-        myUIScript = this.transform.GetChild(0).GetComponent<DisplayRoleScript>();
-        myForceScript = this.GetComponent<AttractForceScript>();
         myForceScript.enabled = false;
     }
 
@@ -107,8 +105,8 @@ public class PlayerMove : MonoBehaviour
         if(c.gameObject.tag == "testObj")
         {
             myUIScript.lose_life();
-            //myUIScript.change_role();
-            //myForceScript.change_force_direction(myUIScript.get_is_tagger());
+            myUIScript.change_role();
+            myForceScript.change_force_direction(myUIScript.get_is_tagger());
 
         }
     }

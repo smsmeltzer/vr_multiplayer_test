@@ -18,7 +18,7 @@ public class BasicNonVRMovement : MonoBehaviourPunCallbacks
     public float tol = 0.01f;
 
     private float pitch = 0f;
-    private float yVelocity = 0f;
+    //private float yVelocity = 0f;
 
     Transform cameraT;
     float verticalLookRotation;
@@ -33,17 +33,15 @@ public class BasicNonVRMovement : MonoBehaviourPunCallbacks
     private CharacterController cc;
     private GameObject planet;
 
-
-    // POWERUP Functionality:
-    private bool timer_activated;   
+    // POWERUP functionality:
+    private bool timer_activated;
     private float timer_time;
 
     private int active_powerup;
     private const int POWER_UP_TIME = 5;    // 5 seconds
 
-    private DisplayRoleScript myUIScript;
-    private AttractForceScript myForceScript;
-
+    [SerializeField] private DisplayRoleScript myUIScript;
+    [SerializeField] private AttractForceScript myForceScript;
 
     // Start is called before the first frame update
     void Start()
@@ -76,6 +74,28 @@ public class BasicNonVRMovement : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
+        if (timer_activated)
+        {
+            timer_time -= Time.deltaTime;
+            if (timer_time <= 0)
+            {
+                timer_time = POWER_UP_TIME;
+                timer_activated = false;
+                myForceScript.enabled = false;
+            }
+
+
+            if (active_powerup == 2)
+            {
+                moveSpeed = CONST_MOVE_SPEED + 3;
+            }
+            else if (active_powerup == 3)
+            {
+                myForceScript.change_force_direction(myUIScript.get_is_tagger());
+                myForceScript.enabled = true;
+            }
+        }
+
         if (view.IsMine)
         {
             // POWERUP Functionality:
