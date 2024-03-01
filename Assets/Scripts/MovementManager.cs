@@ -48,6 +48,7 @@ public class MovementManager : MonoBehaviourPunCallbacks
     void Update()
     {
         if (view.IsMine) {
+            XRrig.position = child.transform.position;
             Look();
             Move();
         }
@@ -55,8 +56,6 @@ public class MovementManager : MonoBehaviourPunCallbacks
 
     void Move()
     {
-        XRrig.position = child.transform.position;
-
         if (inputData.rightController.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 movement))
         {
             Vector3 moveDir = new Vector3(movement.x, 0, movement.y).normalized;
@@ -83,8 +82,8 @@ public class MovementManager : MonoBehaviourPunCallbacks
 
     void Look()
     {
-        child.transform.rotation = Quaternion.LookRotation(cameraT.forward);
-        XRrig.transform.rotation = Quaternion.LookRotation(child.transform.forward, child.transform.up);
+        XRrig.up = child.transform.up;
+        child.transform.forward = cameraT.forward;
     }
 
     private void FixedUpdate()
