@@ -60,7 +60,8 @@ public class NewBehaviourScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name == "player")
+        Debug.Log("Powerup collided with " + collision.gameObject.tag);
+        if (collision.gameObject.tag == "Player")   // set tag of player obj to "Player"
         {
 
             myCollider.enabled = false;
