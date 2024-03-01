@@ -117,6 +117,7 @@ GameObject:
   - component: {fileID: 1095350501793889885}
   - component: {fileID: 8048447846817840094}
   - component: {fileID: 2405926468567146272}
+  - component: {fileID: 3071179545413898120}
   m_Layer: 0
   m_Name: NetworkPlayerNonVR
   m_TagString: Untagged
@@ -160,6 +161,9 @@ MonoBehaviour:
   gravity: 10
   jumpSpeed: 10
   tol: 0.01
+  groundedMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &8048447846817840094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,6 +197,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e768df25ea0b48844a4019bddeebcca1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3071179545413898120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5464222448787670157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8faf4586b313612479951a87a14cc53f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8333527247751548980

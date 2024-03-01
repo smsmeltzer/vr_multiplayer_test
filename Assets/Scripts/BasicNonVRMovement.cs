@@ -12,7 +12,7 @@ public class BasicNonVRMovement : MonoBehaviourPunCallbacks
     public float maxPitch = 85f;
     public float minPitch = -85f;
     public float gravity = 15f;
-    public float jumpSpeed = 10f;
+    public float jumpSpeed = 100f;
     public float tol = 0.01f;
 
     private float pitch = 0f;
@@ -30,6 +30,10 @@ public class BasicNonVRMovement : MonoBehaviourPunCallbacks
 
     private CharacterController cc;
     private GameObject planet;
+
+    public LayerMask groundedMask;
+
+    private bool grounded = false;
 
     // Start is called before the first frame update
     void Start()
@@ -79,10 +83,31 @@ public class BasicNonVRMovement : MonoBehaviourPunCallbacks
         Vector3 moveDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
         Vector3 targetMoveAmount = moveDir * moveSpeed;
         moveAmount = Vector3.SmoothDamp(moveAmount, targetMoveAmount, ref smoothMoveVelocity, .15f);
+
+        grounded = false;
+        Ray ray = new Ray(child.transform.position, -child.transform.up);
+        RaycastHit hit;
+
+        if (Input.GetKey("space"))
+        {
+            
+            Debug.Log("Jumping");
+        }
+
+        if (Physics.Raycast(ray, out hit, 1 + .5f, groundedMask))
+        {
+            Debug.Log("Grounded");
+            grounded = true;
+        }
     }
 
     private void FixedUpdate()
     {
         rb.MovePosition(rb.position + child.transform.TransformVector(moveAmount) * Time.fixedDeltaTime);
+
+        if (grounded)
+        {
+            rb.AddForce(child.transform.up * jumpSpeed);
+        }
     }
 }

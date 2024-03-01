@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 44929201}
   - component: {fileID: 44929200}
   - component: {fileID: 44929204}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Globe
   m_TagString: Planet
   m_Icon: {fileID: 0}
@@ -292,7 +292,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &768453781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2005,7 +2005,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1786783290
 MonoBehaviour:
   m_ObjectHideFlags: 0
