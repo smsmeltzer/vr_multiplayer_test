@@ -58,6 +58,9 @@ MonoBehaviour:
   tol: 0.01
   myUIScript: {fileID: 0}
   myForceScript: {fileID: 0}
+  groundedMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &8048447846817840094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,6 +378,10 @@ PrefabInstance:
     - target: {fileID: 547064855851376778, guid: 27cfa76be41d4394da810670589e394e, type: 3}
       propertyPath: m_Name
       value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 547064855851376778, guid: 27cfa76be41d4394da810670589e394e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1367194516677799546, guid: 27cfa76be41d4394da810670589e394e, type: 3}
       propertyPath: m_Pivot.x

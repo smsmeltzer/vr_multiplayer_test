@@ -1,22 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun.Demo.PunBasics;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
+using Photon.Pun;
 
-public class DisplayRoleScript : MonoBehaviour
+
+public class DisplayRoleScript : MonoBehaviourPun
 {
     [SerializeField] private TextMeshProUGUI roleText;
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private TextMeshProUGUI gameOverText;
 
-    [SerializeField] private Image heart1;
-    [SerializeField] private Image heart2;
-    [SerializeField] private Image heart3;
+    [SerializeField] private UnityEngine.UI.Image heart1;
+    [SerializeField] private UnityEngine.UI.Image heart2;
+    [SerializeField] private UnityEngine.UI.Image heart3;
     private int num_lives;
 
-    [SerializeField] private Image tpImage;
+    [SerializeField] private UnityEngine.UI.Image tpImage;
 
     const int MAX_TAGGER_TIME = 120;    // max time given to tagger 
 
@@ -26,10 +30,25 @@ public class DisplayRoleScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI tpText;
     private int num_tps;
 
+
+
+
     // Start is called before the first frame update
     void Start()
     {
-        set_role("tagger");
+        if (!photonView.IsMine)
+        {
+            this.enabled = false;
+        }
+        //set_role("tagger");
+        if (PhotonNetwork.CountOfPlayers == 1)
+        {
+            set_role("tagger");
+        }
+        else
+        {
+            set_role("runner");
+        }
 
         num_lives = 3;
         heart1.enabled = true;
@@ -145,4 +164,5 @@ public class DisplayRoleScript : MonoBehaviour
         num_tps--;
         tpText.text = num_tps.ToString();
     }
+
 }
