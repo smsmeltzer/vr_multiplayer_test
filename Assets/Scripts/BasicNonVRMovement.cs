@@ -7,18 +7,16 @@ using System;
 
 public class BasicNonVRMovement : MonoBehaviourPunCallbacks
 {
-    private const float CONST_MOVE_SPEED = 10f;
-
     public float mouseSensitivity = 250f;
-    public float moveSpeed = CONST_MOVE_SPEED;
+    public float moveSpeed = 10f;
     public float maxPitch = 85f;
     public float minPitch = -85f;
     public float gravity = 15f;
-    public float jumpSpeed = 10f;
+    public float jumpSpeed = 100f;
     public float tol = 0.01f;
 
     private float pitch = 0f;
-    //private float yVelocity = 0f;
+    private float yVelocity = 0f;
 
     Transform cameraT;
     float verticalLookRotation;
@@ -33,15 +31,9 @@ public class BasicNonVRMovement : MonoBehaviourPunCallbacks
     private CharacterController cc;
     private GameObject planet;
 
-    // POWERUP functionality:
-    private bool timer_activated;
-    private float timer_time;
+    public LayerMask groundedMask;
 
-    private int active_powerup;
-    private const int POWER_UP_TIME = 5;    // 5 seconds
-
-    [SerializeField] private DisplayRoleScript myUIScript;
-    [SerializeField] private AttractForceScript myForceScript;
+    private bool grounded = false;
 
     // Start is called before the first frame update
     void Start()
@@ -59,69 +51,13 @@ public class BasicNonVRMovement : MonoBehaviourPunCallbacks
         {
             cameraT.gameObject.SetActive(false);
         }
-
-        // POWERUP Functionality:
-
-        timer_time = POWER_UP_TIME;
-        timer_activated = false;
-        active_powerup = -1;
-
-        myUIScript = this.transform.Find("UI").GetComponent<DisplayRoleScript>();
-        myForceScript = this.GetComponent<AttractForceScript>();
-        myForceScript.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (timer_activated)
-        {
-            timer_time -= Time.deltaTime;
-            if (timer_time <= 0)
-            {
-                timer_time = POWER_UP_TIME;
-                timer_activated = false;
-                myForceScript.enabled = false;
-            }
-
-
-            if (active_powerup == 2)
-            {
-                moveSpeed = CONST_MOVE_SPEED + 3;
-            }
-            else if (active_powerup == 3)
-            {
-                myForceScript.change_force_direction(myUIScript.get_is_tagger());
-                myForceScript.enabled = true;
-            }
-        }
-
         if (view.IsMine)
         {
-            // POWERUP Functionality:
-            if (timer_activated)
-            {
-                timer_time -= Time.deltaTime;
-                if (timer_time <= 0)    // Powerup no longer active, reset all variables
-                {
-                    timer_time = POWER_UP_TIME;
-                    timer_activated = false;
-                    myForceScript.enabled = false;
-                    moveSpeed = CONST_MOVE_SPEED;
-                }
-
-
-                if (active_powerup == 2)    // Turbo Speed
-                {
-                    moveSpeed = CONST_MOVE_SPEED + 3;
-                }
-                else if (active_powerup == 3)   // Attract/Repulse
-                {
-                    myForceScript.change_force_direction(myUIScript.get_is_tagger());
-                    myForceScript.enabled = true;
-                }
-            }
-
             Look();
             Move();
         }
@@ -147,17 +83,31 @@ public class BasicNonVRMovement : MonoBehaviourPunCallbacks
         Vector3 moveDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
         Vector3 targetMoveAmount = moveDir * moveSpeed;
         moveAmount = Vector3.SmoothDamp(moveAmount, targetMoveAmount, ref smoothMoveVelocity, .15f);
+
+        grounded = false;
+        Ray ray = new Ray(child.transform.position, -child.transform.up);
+        RaycastHit hit;
+
+        if (Input.GetKey("space"))
+        {
+            
+            Debug.Log("Jumping");
+        }
+
+        if (Physics.Raycast(ray, out hit, 1 + .5f, groundedMask))
+        {
+            Debug.Log("Grounded");
+            grounded = true;
+        }
     }
 
     private void FixedUpdate()
     {
         rb.MovePosition(rb.position + child.transform.TransformVector(moveAmount) * Time.fixedDeltaTime);
-    }
 
-    // Sets active powerup when Player collides with powerup spawner
-    public void add_powerup(int powerup)
-    {
-        active_powerup = powerup;
-        timer_activated = true;
+        if (grounded)
+        {
+            rb.AddForce(child.transform.up * jumpSpeed);
+        }
     }
 }
