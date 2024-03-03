@@ -56,8 +56,6 @@ MonoBehaviour:
   gravity: 10
   jumpSpeed: 10
   tol: 0.01
-  myUIScript: {fileID: 0}
-  myForceScript: {fileID: 0}
   groundedMask:
     serializedVersion: 2
     m_Bits: 0
