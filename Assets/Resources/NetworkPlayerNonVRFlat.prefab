@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 4601498920836347011}
   m_Layer: 0
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -472,6 +472,38 @@ PrefabInstance:
     - target: {fileID: 1367194516677799546, guid: 27cfa76be41d4394da810670589e394e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494425720522210369, guid: 27cfa76be41d4394da810670589e394e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 472
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494425720522210369, guid: 27cfa76be41d4394da810670589e394e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 187
+      objectReference: {fileID: 0}
+    - target: {fileID: 6243421699714022125, guid: 27cfa76be41d4394da810670589e394e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -472
+      objectReference: {fileID: 0}
+    - target: {fileID: 6243421699714022125, guid: 27cfa76be41d4394da810670589e394e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 312
+      objectReference: {fileID: 0}
+    - target: {fileID: 6713646741330404775, guid: 27cfa76be41d4394da810670589e394e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 479
+      objectReference: {fileID: 0}
+    - target: {fileID: 6713646741330404775, guid: 27cfa76be41d4394da810670589e394e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 236
+      objectReference: {fileID: 0}
+    - target: {fileID: 7519527765995368742, guid: 27cfa76be41d4394da810670589e394e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 188
+      objectReference: {fileID: 0}
+    - target: {fileID: 7519527765995368742, guid: 27cfa76be41d4394da810670589e394e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 130
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
