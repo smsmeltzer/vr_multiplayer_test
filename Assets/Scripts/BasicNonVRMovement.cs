@@ -12,7 +12,7 @@ public class BasicNonVRMovement : MonoBehaviourPunCallbacks
     public float maxPitch = 85f;
     public float minPitch = -85f;
     public float gravity = 15f;
-    public float jumpSpeed = 100f;
+    public float jumpSpeed = 1000f;
     public float tol = 0.01f;
 
     private float pitch = 0f;
@@ -88,15 +88,13 @@ public class BasicNonVRMovement : MonoBehaviourPunCallbacks
         Ray ray = new Ray(child.transform.position, -child.transform.up);
         RaycastHit hit;
 
-        if (Input.GetKey("space"))
+        if (Input.GetKeyDown("space"))
         {
-            
-            Debug.Log("Jumping");
+            rb.AddForce(child.transform.up * jumpSpeed, ForceMode.Impulse);
         }
 
         if (Physics.Raycast(ray, out hit, 1 + .5f, groundedMask))
         {
-            Debug.Log("Grounded");
             grounded = true;
         }
     }
@@ -104,10 +102,5 @@ public class BasicNonVRMovement : MonoBehaviourPunCallbacks
     private void FixedUpdate()
     {
         rb.MovePosition(rb.position + child.transform.TransformVector(moveAmount) * Time.fixedDeltaTime);
-
-        if (grounded)
-        {
-            rb.AddForce(child.transform.up * jumpSpeed);
-        }
     }
 }
