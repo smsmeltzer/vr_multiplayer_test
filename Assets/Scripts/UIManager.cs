@@ -13,6 +13,8 @@ public class DisplayRoleScript : MonoBehaviourPun
 {
     [SerializeField] private TextMeshProUGUI roleText;
     [SerializeField] private TextMeshProUGUI timerText;
+    [SerializeField] private TextMeshProUGUI gameOverText;
+
 
     [SerializeField] private UnityEngine.UI.Image heart1;
     [SerializeField] private UnityEngine.UI.Image heart2;
@@ -46,6 +48,8 @@ public class DisplayRoleScript : MonoBehaviourPun
         tpText.text = num_tps.ToString();
 
         timerText.text = "";
+
+        gameOverText.enabled = false;
     }
 
     // Update is called once per frame
@@ -118,7 +122,7 @@ public class DisplayRoleScript : MonoBehaviourPun
                 roleText.enabled = false;
                 tpText.enabled = false;
                 tpImage.enabled = false;
-
+                gameOverText.enabled = true;
             }
             else if (num_lives == 1)
             {

@@ -40,8 +40,9 @@ public class MovementManager : MonoBehaviourPunCallbacks
     private bool timer_activated;
     private float timer_time;
 
+    // Tp tracker and separate timer
+    // 1 second delay between tps to limit motion sickness and to prevent spamming
     private float tp_timer = 1;
-
     private int stored_tps;
 
     private DisplayRoleScript myUIScript;
@@ -96,17 +97,18 @@ public class MovementManager : MonoBehaviourPunCallbacks
                 }
             }
 
+            // If tp is not on cooldown
             if (tp_timer <= 0)
             {
                 bool pressed;
                 RightController.inputDevice.IsPressed(button, out pressed);
 
-                if (pressed && stored_tps != 0)
+                if (pressed && stored_tps != 0) // check if button is pressed to tp
                 {
-                    rb.MovePosition(rayInteractor.rayEndPoint);
+                    rb.MovePosition(rayInteractor.rayEndPoint); // teleport player by using the endpoint of the ray
                     stored_tps--;
                     tp_timer = 1;
-                    myUIScript.use_tp();
+                    myUIScript.use_tp();    
                 }
             }
             else

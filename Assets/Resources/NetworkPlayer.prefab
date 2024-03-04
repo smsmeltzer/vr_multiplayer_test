@@ -55,7 +55,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   button: 2
-  myUIScript: {fileID: 3117112995823475312}
   myForceScript: {fileID: 5057904371463473576}
 --- !u!114 &8048447846817840094
 MonoBehaviour:
@@ -384,17 +383,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27cfa76be41d4394da810670589e394e, type: 3}
---- !u!114 &3117112995823475312 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7811770795525862205, guid: 27cfa76be41d4394da810670589e394e, type: 3}
-  m_PrefabInstance: {fileID: 5128133121012214093}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08182767250a13242a47ed58a1c91833, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &6184438223107262263 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1367194516677799546, guid: 27cfa76be41d4394da810670589e394e, type: 3}
