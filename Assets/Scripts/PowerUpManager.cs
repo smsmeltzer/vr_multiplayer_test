@@ -73,15 +73,7 @@ public class NewBehaviourScript : MonoBehaviour
 
             spawn_time = Random.Range(MIN_TIMER, MAX_TIMER);    // reset timer
 
-            // Access UI of gameobj and use add_powerup() to update UI
-            if (powerup == 1)   // store tp in UI, get UI obj attached to specific game obj
-            {
-                collision.gameObject.transform.Find("UI").gameObject.GetComponent<DisplayRoleScript>().add_tp();
-            }
-            else // Turbo, Attract/Repulse are instant use
-            {
-                collision.gameObject.GetComponent<PlayerMove>().add_powerup(powerup);   // getComponenet<name of movement script>
-            }
+            collision.gameObject.GetComponentInParent<MovementManager>().add_powerup(powerup);
         }
     }
 

@@ -8,9 +8,15 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/GlobeSample.unity
     guid: 6f8dcb7d59fd9704c84e8c33181f04f6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MultiplayerSampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 0
+    path: Assets/Scenes/TeleportScene.unity
+    guid: 4a880a1bd4e6b9442a1a18577a987a05
+  - enabled: 1
+    path: Assets/Scenes/WorldDesignScene.unity
+    guid: 2c3fd9a129b6ef24ebc468aa58f27cc2
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 80ecbe83cea9c4140abd575178f9afa4, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: d4e9cae82115d434da7c6d11876d589a, type: 2}

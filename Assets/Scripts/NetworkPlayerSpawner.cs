@@ -10,7 +10,7 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();
-        PhotonNetwork.Instantiate("NetworkPlayerNonVRFlat", transform.position, transform.rotation);
+        PhotonNetwork.Instantiate("NetworkPlayer", transform.position, transform.rotation);
     }
 
     public override void OnLeftRoom()

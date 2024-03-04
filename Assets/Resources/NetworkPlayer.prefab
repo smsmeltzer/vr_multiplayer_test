@@ -54,6 +54,9 @@ MonoBehaviour:
   groundedMask:
     serializedVersion: 2
     m_Bits: 0
+  button: 2
+  myUIScript: {fileID: 3117112995823475312}
+  myForceScript: {fileID: 5057904371463473576}
 --- !u!114 &8048447846817840094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,9 +119,10 @@ GameObject:
   - component: {fileID: 5912039804459450119}
   - component: {fileID: 1984903835982814804}
   - component: {fileID: 2011781081054000424}
+  - component: {fileID: 5057904371463473576}
   m_Layer: 0
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -267,7 +271,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88f2001327c2c2d438fc9de4016ef683, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isIt: 0
+--- !u!114 &5057904371463473576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8333527247751548980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4140cacaccb14444ea82e08f2c8ffbcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5128133121012214093
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -279,6 +294,10 @@ PrefabInstance:
     - target: {fileID: 547064855851376778, guid: 27cfa76be41d4394da810670589e394e, type: 3}
       propertyPath: m_Name
       value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 547064855851376778, guid: 27cfa76be41d4394da810670589e394e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1367194516677799546, guid: 27cfa76be41d4394da810670589e394e, type: 3}
       propertyPath: m_Pivot.x
@@ -365,6 +384,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27cfa76be41d4394da810670589e394e, type: 3}
+--- !u!114 &3117112995823475312 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7811770795525862205, guid: 27cfa76be41d4394da810670589e394e, type: 3}
+  m_PrefabInstance: {fileID: 5128133121012214093}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08182767250a13242a47ed58a1c91833, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &6184438223107262263 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1367194516677799546, guid: 27cfa76be41d4394da810670589e394e, type: 3}
@@ -381,6 +411,10 @@ PrefabInstance:
     - target: {fileID: 111614, guid: 2599104a4a2a5214f8407d03827b5eff, type: 3}
       propertyPath: m_Name
       value: ToonSoldier_WW2_demo_model
+      objectReference: {fileID: 0}
+    - target: {fileID: 111614, guid: 2599104a4a2a5214f8407d03827b5eff, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 432436, guid: 2599104a4a2a5214f8407d03827b5eff, type: 3}
       propertyPath: m_LocalPosition.x
