@@ -32,7 +32,6 @@ public class MovementManager : MonoBehaviourPunCallbacks
     Vector3 moveAmount;
     Vector3 smoothMoveVelocity;
 
-
     private XRController RightController;
     private XRRayInteractor rayInteractor;
     public InputHelpers.Button button;
@@ -43,10 +42,9 @@ public class MovementManager : MonoBehaviourPunCallbacks
 
     private float tp_timer = 1;
 
-
     private int stored_tps;
 
-    [SerializeField] private DisplayRoleScript myUIScript;
+    private DisplayRoleScript myUIScript;
     [SerializeField] private AttractForceScript myForceScript;  
 
     // Start is called before the first frame update
@@ -64,6 +62,8 @@ public class MovementManager : MonoBehaviourPunCallbacks
 
         RightController = XrOrigin.transform.Find("Camera Offset").Find("Right Controller").GetComponent<XRController>();
         rayInteractor = XrOrigin.transform.Find("Camera Offset").Find("Right Controller").GetComponent<XRRayInteractor>();
+
+        myUIScript = XrOrigin.transform.Find("Camera Offset").Find("Right Controller").Find("UI").GetComponent<DisplayRoleScript>();
 
         if (!view.IsMine)
         {
@@ -106,6 +106,7 @@ public class MovementManager : MonoBehaviourPunCallbacks
                     rb.MovePosition(rayInteractor.rayEndPoint);
                     stored_tps--;
                     tp_timer = 1;
+                    myUIScript.use_tp();
                 }
             }
             else
@@ -163,6 +164,7 @@ public class MovementManager : MonoBehaviourPunCallbacks
         if (powerup == 1)   // teleportation
         {
             stored_tps += 1;
+            myUIScript.add_tp();
         }
         else if (powerup == 2)    // Turbo speed
 

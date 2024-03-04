@@ -13,7 +13,6 @@ public class DisplayRoleScript : MonoBehaviourPun
 {
     [SerializeField] private TextMeshProUGUI roleText;
     [SerializeField] private TextMeshProUGUI timerText;
-    [SerializeField] private TextMeshProUGUI gameOverText;
 
     [SerializeField] private UnityEngine.UI.Image heart1;
     [SerializeField] private UnityEngine.UI.Image heart2;
@@ -36,19 +35,7 @@ public class DisplayRoleScript : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-        if (!photonView.IsMine)
-        {
-            this.enabled = false;
-        }
-        //set_role("tagger");
-        if (PhotonNetwork.CountOfPlayers == 1)
-        {
-            set_role("tagger");
-        }
-        else
-        {
-            set_role("runner");
-        }
+        set_role("tagger");
 
         num_lives = 3;
         heart1.enabled = true;
@@ -57,8 +44,6 @@ public class DisplayRoleScript : MonoBehaviourPun
 
         num_tps = 0;
         tpText.text = num_tps.ToString();
-
-        gameOverText.enabled = false;
 
         timerText.text = "";
     }
@@ -129,7 +114,6 @@ public class DisplayRoleScript : MonoBehaviourPun
             {
                 // Player has died: disable all UI
                 heart3.enabled = false; 
-                gameOverText.enabled = true;
                 timerText.enabled = false;
                 roleText.enabled = false;
                 tpText.enabled = false;
