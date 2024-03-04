@@ -1,34 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun.Demo.PunBasics;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
+using Photon.Pun;
 
-public class DisplayRoleScript : MonoBehaviour
+
+public class DisplayRoleScript : MonoBehaviourPun
 {
     [SerializeField] private TextMeshProUGUI roleText;
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private TextMeshProUGUI gameOverText;
 
-    [SerializeField] private Image heart1;
-    [SerializeField] private Image heart2;
-    [SerializeField] private Image heart3;
+
+    [SerializeField] private UnityEngine.UI.Image heart1;
+    [SerializeField] private UnityEngine.UI.Image heart2;
+    [SerializeField] private UnityEngine.UI.Image heart3;
     private int num_lives;
 
-    [SerializeField] private Image turboImage;
-    [SerializeField] private Image attractImage;
-    [SerializeField] private Image repulseImage;
-    [SerializeField] private Image tpImage;
-
-
-    // Stores type of powerup player has:
-    // -1 = no powerup stored
-    // 1 = tp (has seperate counter b/c player can store multiple)
-    // 2 = turbo speed
-    // 3 = attack/repulse
-    private int powerup;
-
+    [SerializeField] private UnityEngine.UI.Image tpImage;
 
     const int MAX_TAGGER_TIME = 120;    // max time given to tagger 
 
@@ -38,10 +31,13 @@ public class DisplayRoleScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI tpText;
     private int num_tps;
 
+
+
+
     // Start is called before the first frame update
     void Start()
     {
-        set_role("runner");
+        set_role("tagger");
 
         num_lives = 3;
         heart1.enabled = true;
@@ -51,14 +47,9 @@ public class DisplayRoleScript : MonoBehaviour
         num_tps = 0;
         tpText.text = num_tps.ToString();
 
-        powerup = -1;
-        turboImage.enabled = false;
-        attractImage.enabled = false;
-        repulseImage.enabled = false;
+        timerText.text = "";
 
         gameOverText.enabled = false;
-
-        timerText.text = "";
     }
 
     // Update is called once per frame
@@ -94,6 +85,28 @@ public class DisplayRoleScript : MonoBehaviour
         }
     }
 
+    public void change_role()
+    {
+        if (roleText.text == "tagger")
+        {
+            is_tagger = false;
+            roleText.text = "runner";
+            timerText.text = "";
+        }
+        else
+        {
+            roleText.text = "tagger";
+            is_tagger = true;
+            targetTime = MAX_TAGGER_TIME;
+
+        }
+    }
+
+    public bool get_is_tagger()
+    {
+        return is_tagger;
+    }
+
     // Subtracts a life from player
     // Returns if player is alive after subtracting life
     public bool lose_life()
@@ -105,15 +118,11 @@ public class DisplayRoleScript : MonoBehaviour
             {
                 // Player has died: disable all UI
                 heart3.enabled = false; 
-                gameOverText.enabled = true;
                 timerText.enabled = false;
                 roleText.enabled = false;
                 tpText.enabled = false;
-                turboImage.enabled = false;
-                attractImage.enabled = false;
-                repulseImage.enabled = false;
                 tpImage.enabled = false;
-
+                gameOverText.enabled = true;
             }
             else if (num_lives == 1)
             {
@@ -144,52 +153,4 @@ public class DisplayRoleScript : MonoBehaviour
         tpText.text = num_tps.ToString();
     }
 
-    // Adds powerup based on int 
-    // 1 = add tp
-    // 2 = add turbo speed
-    // 3 = add attract/repulse  
-    public void add_powerup(int p)
-    {
-        // player has a powerup stored, can't pick up another unless its a tp
-        if (powerup != -1 && p != 1)
-        {
-            return;
-        }
-
-        powerup = p;
-
-        // change text based off of type of power up
-        if (powerup == 1)
-        {
-            add_tp();
-        }
-        else if (powerup == 2)
-        {
-            turboImage.enabled = true;
-        }
-        else if (powerup == 3)
-        {
-
-            if (is_tagger)  // display attract or repulse image based on player's Role
-            {
-                attractImage.enabled = true;    
-            }
-            else { 
-                repulseImage.enabled = true;    
-            }
-        }
-    }
-
-    // Removes displayed powerup
-    // different than use_tp()
-    public void use_powerup()
-    {
-        if (powerup != -1)
-        {
-            powerup = -1;
-            turboImage.enabled = false;
-            attractImage.enabled = false;
-            repulseImage.enabled = false;
-        }
-    }
 }

@@ -24,9 +24,9 @@ public class AttractForceScript : MonoBehaviour
             Vector3 forceDirection = transform.position - collider.transform.position;
 
             // apply force on target towards me
-            if (collider.tag == "Player")
+            if (collider.tag == "Player" || collider.tag == "testObj")
             {
-                collider.attachedRigidbody.AddForce(forceDirection.normalized * pullForce, ForceMode.Acceleration);
+                collider.attachedRigidbody.AddForce(forceDirection.normalized * pullForce, ForceMode.Force);
             }
         }
     }
