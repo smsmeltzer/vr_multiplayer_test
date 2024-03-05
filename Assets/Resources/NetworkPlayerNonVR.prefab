@@ -163,7 +163,7 @@ MonoBehaviour:
   tol: 0.01
   groundedMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!114 &8048447846817840094
 MonoBehaviour:
   m_ObjectHideFlags: 0

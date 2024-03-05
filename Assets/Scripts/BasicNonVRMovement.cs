@@ -12,7 +12,7 @@ public class BasicNonVRMovement : MonoBehaviourPunCallbacks
     public float maxPitch = 85f;
     public float minPitch = -85f;
     public float gravity = 15f;
-    public float jumpSpeed = 1000f;
+    public float jumpSpeed = 200f;
     public float tol = 0.01f;
 
     private float pitch = 0f;
@@ -84,18 +84,22 @@ public class BasicNonVRMovement : MonoBehaviourPunCallbacks
         Vector3 targetMoveAmount = moveDir * moveSpeed;
         moveAmount = Vector3.SmoothDamp(moveAmount, targetMoveAmount, ref smoothMoveVelocity, .15f);
 
-        grounded = false;
+        
         Ray ray = new Ray(child.transform.position, -child.transform.up);
         RaycastHit hit;
 
-        if (Input.GetKeyDown("space"))
-        {
-            rb.AddForce(child.transform.up * jumpSpeed, ForceMode.Impulse);
-        }
-
-        if (Physics.Raycast(ray, out hit, 1 + .5f, groundedMask))
+        if (Physics.Raycast(ray, out hit, 1 + .1f, groundedMask))
         {
             grounded = true;
+        } else
+        {
+            grounded = false;
+        }
+
+        if (Input.GetKeyDown("space") && grounded)
+        {
+            rb.AddForce(child.transform.up * jumpSpeed, ForceMode.Impulse);
+            Debug.Log("jump");
         }
     }
 

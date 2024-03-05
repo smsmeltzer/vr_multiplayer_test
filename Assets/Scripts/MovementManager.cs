@@ -7,6 +7,7 @@ using UnityEngine.Animations;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 using Unity.XR.CoreUtils;
+using Unity.VisualScripting;
 
 public class MovementManager : MonoBehaviourPunCallbacks
 {
@@ -19,7 +20,7 @@ public class MovementManager : MonoBehaviourPunCallbacks
     private float xInput;
     private float yInput;
     public float moveSpeed = CONST_MOVE_SPEED;
-    public float jumpSpeed = 10.0f;
+    public float jumpSpeed = 200.0f;
     public LayerMask groundedMask;
 
     private bool grounded = false;
@@ -131,15 +132,7 @@ public class MovementManager : MonoBehaviourPunCallbacks
             Vector3 targetMoveAmount = moveDir * moveSpeed;
             moveAmount = Vector3.SmoothDamp(moveAmount, targetMoveAmount, ref smoothMoveVelocity, .15f);
         }
-        if (inputData.rightController.TryGetFeatureValue(CommonUsages.primaryButton, out bool jump))
-        {
-            if (grounded)
-            {
-                rb.AddForce(child.transform.up * jumpSpeed);
-            }
-        }
 
-        grounded = false;
         Ray ray = new Ray(child.transform.position, -child.transform.up);
         RaycastHit hit;
 
@@ -147,11 +140,21 @@ public class MovementManager : MonoBehaviourPunCallbacks
         {
             grounded = true;
         }
+        else
+        {
+            grounded = false;
+        }
+
+        if (inputData.rightController.TryGetFeatureValue(CommonUsages.primaryButton, out bool jump) && grounded)
+        {
+            rb.AddForce(child.transform.up * jumpSpeed, ForceMode.Impulse);
+        }
     }
 
     void Look()
     {
-        XRrig.up = child.transform.up;
+        XRrig.position = child.transform.position;
+        XRrig.transform.up = child.transform.up;
         child.transform.forward = cameraT.forward;
     }
 
