@@ -117,7 +117,6 @@ GameObject:
   - component: {fileID: 8679862734900358342}
   - component: {fileID: 5912039804459450119}
   - component: {fileID: 1984903835982814804}
-  - component: {fileID: 2011781081054000424}
   - component: {fileID: 5057904371463473576}
   m_Layer: 0
   m_Name: Body
@@ -258,18 +257,6 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
---- !u!114 &2011781081054000424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8333527247751548980}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88f2001327c2c2d438fc9de4016ef683, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5057904371463473576
 MonoBehaviour:
   m_ObjectHideFlags: 0
