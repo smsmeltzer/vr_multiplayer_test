@@ -7,12 +7,13 @@ using Photon.Pun;
 public class PlayerRoleManager : MonoBehaviourPunCallbacks
 {
     private bool team = false;
-    void Start()
+    public void OnPhotonInstantiate(PhotonMessageInfo info)
     {
-        if (PhotonNetwork.CurrentRoom.PlayerCount == 2 )
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 1 )
         {
             team = true;
         }
+        Debug.Log(team);
     }
 
     public void ChangeTeam()
