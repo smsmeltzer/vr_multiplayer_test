@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8048447846817840094}
   - component: {fileID: 2405926468567146272}
   - component: {fileID: 8891030992310979019}
+  - component: {fileID: 3877493662158642752}
   m_Layer: 0
   m_Name: NetworkPlayerNonVRFlat
   m_TagString: Player
@@ -108,6 +109,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8da6286050c252a4cbb3636dae2407ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3877493662158642752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5464222448787670157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bb6f52ba44e7534e9ae9ef8f3b5bc85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8333527247751548980
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,6 +137,7 @@ GameObject:
   - component: {fileID: 1683875118586313283}
   - component: {fileID: 4601498920836347011}
   - component: {fileID: 1159743990456221221}
+  - component: {fileID: 3983713051063781872}
   m_Layer: 0
   m_Name: Body
   m_TagString: Player
@@ -271,7 +285,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8333527247751548980}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88f2001327c2c2d438fc9de4016ef683, type: 3}
   m_Name: 
@@ -283,9 +297,21 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8333527247751548980}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4140cacaccb14444ea82e08f2c8ffbcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3983713051063781872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8333527247751548980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecad5ed64ee602843bc144327d29a49d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8563337194591313356
@@ -394,7 +420,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 547064855851376778, guid: 27cfa76be41d4394da810670589e394e, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1367194516677799546, guid: 27cfa76be41d4394da810670589e394e, type: 3}
       propertyPath: m_Pivot.x

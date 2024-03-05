@@ -149,7 +149,7 @@ public class MovementManager : MonoBehaviourPunCallbacks
 
     void Look()
     {
-        XRrig.up = child.transform.up;
+        //XRrig.up = child.transform.up;
         child.transform.forward = cameraT.forward;
     }
 
